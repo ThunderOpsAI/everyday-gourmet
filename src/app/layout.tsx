@@ -44,11 +44,12 @@ export default function RootLayout({
             {/* Desktop Navigation & Actions */}
             <div className="flex items-center justify-between md:justify-end gap-3 sm:gap-6 pt-2 md:pt-0 border-t border-stone-800 md:border-none text-xs sm:text-sm font-semibold">
               <nav className="flex items-center gap-3 sm:gap-5 text-stone-300">
-                <a href="#meat-packs" className="hover:text-amber-400 transition-colors">Freezer Packs</a>
-                <a href="#custom-cuts" className="hover:text-amber-400 transition-colors">Custom Cuts</a>
-                <a href="#heat-eat" className="hover:text-amber-400 transition-colors">Heat &amp; Eat</a>
-                <a href="#awards" className="hover:text-amber-400 transition-colors">Awards</a>
-                <a href="#delivery" className="hover:text-amber-400 transition-colors">Delivery</a>
+                <a href="/freezer-packs" className="hover:text-amber-400 transition-colors">Freezer Packs</a>
+                <a href="/custom-cuts" className="hover:text-amber-400 transition-colors">Custom Cuts</a>
+                <a href="/heat-eat" className="hover:text-amber-400 transition-colors">Heat &amp; Eat</a>
+                <a href="/chef-guide" className="hover:text-amber-400 transition-colors">Chef Guide</a>
+                <a href="/awards" className="hover:text-amber-400 transition-colors">Awards</a>
+                <a href="/delivery" className="hover:text-amber-400 transition-colors">Delivery</a>
               </nav>
 
               <div className="hidden lg:flex items-center gap-2 bg-stone-900 border border-stone-800 px-3 py-1 rounded-full text-xs text-amber-300">
