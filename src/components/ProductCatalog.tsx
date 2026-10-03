@@ -6,7 +6,7 @@ import { useCart } from "@/context/CartContext";
 import { Search, Plus, Check, ShoppingBag, Sparkles, Filter, Award } from "lucide-react";
 
 export function ProductCatalog() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("All Items");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const { addItem, setIsOpen, items } = useCart();
   const [selectedPortions, setSelectedPortions] = useState<Record<string, string>>({});
@@ -15,7 +15,7 @@ export function ProductCatalog() {
   const filteredProducts = useMemo(() => {
     return ALL_PRODUCTS.filter((product) => {
       const matchesCategory =
-        selectedCategory === "All Items" || product.category === selectedCategory;
+        selectedCategory === "all" || product.category === selectedCategory;
       const matchesSearch =
         searchQuery === "" ||
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -30,12 +30,12 @@ export function ProductCatalog() {
   };
 
   const handleAddToCart = (product: Product) => {
-    const chosenPortion = selectedPortions[product.id] || product.portionOptions[0] || "1kg";
+    const chosenPortion = selectedPortions[product.id] || product.portionOptions?.[0] || (product.unit === "kg" ? "1kg" : "1 item");
     addItem({
       name: product.name,
       category: product.category,
       price: product.price,
-      priceFormatted: product.priceFormatted,
+      priceFormatted: product.priceFormatted || `$${product.price.toFixed(2)}`,
       quantity: chosenPortion,
     });
 
@@ -138,18 +138,18 @@ export function ProductCatalog() {
         {/* Category Pill Tabs (Functional segmented filter controls) */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-thin">
           {CATEGORIES.map((cat) => {
-            const isActive = selectedCategory === cat;
+            const isActive = selectedCategory === cat.id;
             return (
               <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3.5 py-2 text-xs font-semibold rounded-xl whitespace-nowrap transition-all ${
                   isActive
                     ? "bg-[#0C1B33] text-white shadow-sm"
                     : "bg-white text-stone-600 hover:bg-stone-100 border border-stone-200"
                 }`}
               >
-                {cat}
+                {cat.label}
               </button>
             );
           })}
@@ -191,7 +191,7 @@ export function ProductCatalog() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filteredProducts.map((product) => {
             const currentPortion =
-              selectedPortions[product.id] || product.portionOptions[0] || "1kg";
+              selectedPortions[product.id] || product.portionOptions?.[0] || (product.unit === "kg" ? "1kg" : "1 item");
             const isJustAdded = addedItemIds[product.id];
 
             return (
@@ -235,20 +235,22 @@ export function ProductCatalog() {
 
                 {/* Portion Selector & Add Button */}
                 <div className="p-4 bg-stone-50/80 border-t border-stone-100 space-y-2">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-medium text-stone-500">Select portion:</span>
-                    <select
-                      value={currentPortion}
-                      onChange={(e) => handlePortionChange(product.id, e.target.value)}
-                      className="text-xs font-bold text-stone-800 bg-white border border-stone-200 rounded-lg px-2.5 py-1 focus:outline-none focus:border-[#0C1B33]"
-                    >
-                      {product.portionOptions.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                  {product.portionOptions && product.portionOptions.length > 0 && (
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[11px] font-medium text-stone-500">Select portion:</span>
+                      <select
+                        value={currentPortion}
+                        onChange={(e) => handlePortionChange(product.id, e.target.value)}
+                        className="text-xs font-bold text-stone-800 bg-white border border-stone-200 rounded-lg px-2.5 py-1 focus:outline-none focus:border-[#0C1B33]"
+                      >
+                        {product.portionOptions.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
 
                   <button
                     onClick={() => handleAddToCart(product)}

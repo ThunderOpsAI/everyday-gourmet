@@ -11,6 +11,11 @@ import { Phone, Mail, MapPin, Clock, Truck, ShieldCheck, Heart } from "lucide-re
 export const metadata: Metadata = {
   title: "Your Everyday Gourmet | Multi-Award-Winning Butcher & Gourmet Kitchen Wangaratta",
   description: "Wangaratta's premier gourmet butcher & chef kitchen. AMIC Gold medal sausages & burgers, grass-fed Victorian beef, local pasture lamb, bulk freezer packs, family pies, and refrigerated regional delivery.",
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
 };
 
 export default function RootLayout({
