@@ -7,7 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { ShoppingBag, Phone, Menu, X, Truck, Award } from "lucide-react";
 
 export function Navbar() {
-  const { items, setIsOpen } = useCart();
+  const { items, itemsCount, setIsOpen } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -81,6 +81,12 @@ export function Navbar() {
               Pies &amp; Meals
             </Link>
             <Link
+              href="/orders"
+              className="text-white hover:text-amber-300 transition-colors py-1 hover:underline underline-offset-4 decoration-amber-400 decoration-2"
+            >
+              My Orders
+            </Link>
+            <Link
               href="/track-order"
               className="text-amber-300 hover:text-amber-200 transition-colors py-1 flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-amber-400/10 border border-amber-400/20 font-bold"
             >
@@ -107,20 +113,20 @@ export function Navbar() {
             <button
               onClick={() => setIsOpen(true)}
               className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/25 transition-all text-xs font-bold active:scale-[0.98] shadow-sm"
-              aria-label={`Open shopping bag with ${items.length} items`}
+              aria-label={`Open shopping bag with ${itemsCount} items`}
             >
               <div className="relative">
                 <ShoppingBag className="w-4 h-4 text-amber-300" />
-                {items.length > 0 && (
+                {itemsCount > 0 && (
                   <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-red-600 text-[10px] font-black flex items-center justify-center text-white shadow">
-                    {items.length}
+                    {itemsCount}
                   </span>
                 )}
               </div>
               <span className="hidden sm:inline">Bag</span>
-              {items.length > 0 && (
+              {itemsCount > 0 && (
                 <span className="hidden sm:inline text-amber-300 font-extrabold">
-                  ({items.length})
+                  ({itemsCount})
                 </span>
               )}
             </button>
@@ -179,6 +185,13 @@ export function Navbar() {
               className="block text-sm font-bold text-white hover:text-amber-300 py-1.5 border-b border-white/5"
             >
               🥧 Family Pies &amp; Heat &amp; Eat Meals
+            </Link>
+            <Link
+              href="/orders"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block text-sm font-bold text-white hover:text-amber-300 py-1.5 border-b border-white/5"
+            >
+              🧾 My Past Orders &amp; Reorder
             </Link>
             <Link
               href="/track-order"

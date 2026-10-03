@@ -4,6 +4,7 @@ import { CartProvider } from "@/context/CartContext";
 import { Navbar } from "@/components/Navbar";
 import { OrderDrawer } from "@/components/OrderDrawer";
 import { CartToast } from "@/components/CartToast";
+import { FloatingCartButton } from "@/components/FloatingCartButton";
 import { EverydayGourmetLogo } from "@/components/EverydayGourmetLogo";
 import Link from "next/link";
 import { Phone, Mail, MapPin, Clock, Truck, ShieldCheck, Heart } from "lucide-react";
@@ -36,6 +37,7 @@ export default function RootLayout({
           {/* Persistent Order Drawer & Toasts */}
           <OrderDrawer />
           <CartToast />
+          <FloatingCartButton />
 
           {/* Rich Gourmet Butcher Footer */}
           <footer className="bg-[#0C1B33] text-stone-300 border-t border-stone-800 pt-16 pb-12 mt-16">
@@ -105,6 +107,11 @@ export default function RootLayout({
                     <li>
                       <Link href="/track-order" className="text-amber-300 hover:text-amber-200 transition-colors font-semibold">
                         🚚 Track Live Order Status
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/orders" className="text-amber-300 hover:text-amber-200 transition-colors font-semibold">
+                        🧾 Order History &amp; 1-Click Reorder
                       </Link>
                     </li>
                     <li>
