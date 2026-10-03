@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useCart } from "@/context/CartContext";
+import { ShoppingBag, Check } from "lucide-react";
 
 export type MeatCategory = "Beef" | "Lamb" | "Pork" | "Chicken" | "Award Sausages & Burgers";
 
@@ -77,6 +79,7 @@ interface OrderItem {
 }
 
 export function ButcherWizard() {
+  const { addItem, setIsOpen } = useCart();
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [selectedCategory, setSelectedCategory] = useState<MeatCategory>("Beef");
   const [selectedCut, setSelectedCut] = useState<CutOption | null>(null);
@@ -101,6 +104,21 @@ export function ButcherWizard() {
   const handleAddToQuote = () => {
     if (selectedCategory && selectedCut) {
       const finalQty = quantity === "Custom" ? customQty.trim() || "1 portion" : quantity;
+      
+      // Parse numeric price for cart
+      const priceNumMatch = selectedCut.priceDesc.match(/\$?(\d+(\.\d{2})?)/);
+      const priceNum = priceNumMatch ? parseFloat(priceNumMatch[1]) : 25;
+
+      // Add to global cart
+      addItem({
+        name: selectedCut.name,
+        category: selectedCategory,
+        price: priceNum,
+        priceFormatted: selectedCut.priceDesc,
+        quantity: finalQty,
+        notes: instructions.trim() || undefined,
+      });
+
       setQuoteList((prev) => [
         ...prev,
         {
@@ -418,16 +436,26 @@ export function ButcherWizard() {
                     💡 <strong>Ready to book?</strong> We cut &amp; pack fresh. Call to confirm ready time, or pre-send via email for our team to prepare.
                   </div>
 
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(true)}
+                    className="w-full py-2.5 px-4 bg-[#0C1B33] hover:bg-stone-800 text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition-all"
+                  >
+                    <ShoppingBag className="w-4 h-4 text-amber-400" />
+                    <span>View Full Order Bag ({quoteList.length} items)</span>
+                  </button>
+
                   <a
                     href="tel:0357213444"
-                    className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition-all"
+                    style={{ backgroundColor: "#D71920" }}
+                    className="w-full py-2.5 px-4 hover:bg-[#b8141a] text-white font-bold text-xs rounded-xl shadow-md flex items-center justify-center gap-2 transition-all"
                   >
                     <span>📞 Call (03) 5721 3444 to Order</span>
                   </a>
 
                   <a
                     href={generateMailtoLink()}
-                    className="w-full py-2.5 px-4 bg-stone-900 hover:bg-stone-800 text-amber-300 font-semibold text-xs rounded-xl shadow-sm flex items-center justify-center gap-2 transition-all border border-stone-700"
+                    className="w-full py-2 px-4 bg-stone-100 hover:bg-stone-200 text-stone-800 font-semibold text-xs rounded-xl shadow-sm flex items-center justify-center gap-2 transition-all border border-stone-200"
                   >
                     <span>✉️ Send Order via Email</span>
                   </a>

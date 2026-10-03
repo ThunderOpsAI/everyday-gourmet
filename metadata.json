@@ -1,0 +1,6 @@
+{
+  "name": "Your Everyday Gourmet",
+  "description": "Wangaratta's premier gourmet butcher and chef kitchen. AMIC Gold medal sausages & burgers, grass-fed beef, local lamb, freezer filler packs, and refrigerated home delivery.",
+  "permissions": [],
+  "capabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

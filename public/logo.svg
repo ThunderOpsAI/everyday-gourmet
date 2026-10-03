@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="100%" height="100%">
+  <!-- Background transparent -->
+  <style>
+    .word-your { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 800; letter-spacing: 0.35em; fill: #0C1B33; text-anchor: middle; }
+    .word-brand { font-family: 'Playfair Display', 'Cinzel', Georgia, serif; font-size: 46px; font-weight: 900; letter-spacing: 0.12em; fill: #0C1B33; text-anchor: middle; }
+    .tagline { font-family: 'Brush Script MT', 'Bickham Script Pro', cursive, 'Georgia', serif; font-style: italic; font-size: 28px; fill: #4B5563; }
+  </style>
+
+  <!-- YOUR -->
+  <text x="300" y="38" class="word-your">YOUR</text>
+
+  <!-- EVERYDAY GOURMET -->
+  <text x="300" y="92" class="word-brand">EVERYDAY GOURMET</text>
+
+  <!-- Left Script Tagline -->
+  <text x="140" y="166" class="tagline" text-anchor="end">Quality meats</text>
+
+  <!-- Rooster Red Circle -->
+  <g transform="translate(262, 126)">
+    <circle cx="38" cy="38" r="36" fill="#D71920" />
+    <!-- White Rooster Silhouette -->
+    <path d="M 25 35 C 22 32 17 33 15 31 C 18 29 23 28 26 25 C 25 21 24 16 28 13 C 31 15 31 19 33 18 C 35 15 37 12 40 13 C 41 16 39 19 41 20 C 43 18 46 18 47 21 C 45 25 42 27 42 31 C 47 28 53 28 58 32 C 62 36 63 42 61 48 C 59 54 54 59 46 61 C 39 62 31 59 26 54 C 22 49 21 41 25 35 Z" fill="#FFFFFF"/>
+    <path d="M 26 31 C 26 35 24 38 21 36 C 20 34 23 32 26 31 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Right Script Tagline -->
+  <text x="360" y="166" class="tagline" text-anchor="start">Homemade meals</text>
+</svg>
