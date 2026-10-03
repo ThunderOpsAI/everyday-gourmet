@@ -31,7 +31,7 @@ export function EverydayGourmetLogo({
   if (variant === "full") {
     return (
       <div className={`flex flex-col items-center justify-center ${className}`}>
-        <div className="relative w-64 sm:w-80 md:w-96 aspect-[387/83]">
+        <div className="relative w-64 sm:w-80 md:w-96 aspect-[309/92]">
           <Image
             src="/images/logo.png"
             alt="Your Everyday Gourmet - Quality meats, Homemade meals"
@@ -46,7 +46,7 @@ export function EverydayGourmetLogo({
 
   // Default: horizontal header/footer lockup
   return (
-    <div className={`relative h-10 sm:h-12 w-48 sm:w-56 shrink-0 ${className}`}>
+    <div className={`relative h-10 sm:h-12 w-36 sm:w-44 shrink-0 ${className}`}>
       <Image
         src="/images/logo.png"
         alt="Your Everyday Gourmet - Quality meats, Homemade meals"

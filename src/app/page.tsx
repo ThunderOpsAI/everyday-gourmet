@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { EverydayGourmetLogo } from "@/components/EverydayGourmetLogo";
 import HeroParallax from "@/components/HeroParallax";
 import ScrollReveal from "@/components/ScrollReveal";
 import {
@@ -63,11 +62,6 @@ export default function Home() {
       <ScrollReveal>
         <HeroParallax imageUrl="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1920&q=80">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 md:py-16 text-center text-white w-full">
-            {/* Authentic Brand Logo Extracted from Card */}
-            <div className="inline-block p-5 sm:p-7 bg-[#0C1B33]/85 backdrop-blur-md rounded-3xl border border-white/15 shadow-2xl mb-6">
-              <EverydayGourmetLogo variant="full" theme="dark" />
-            </div>
-
             <h1 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight text-white mb-3 drop-shadow-md font-serif">
               Wangaratta&apos;s Multi-Award-Winning Butcher Meets Culinary Chef Kitchen
             </h1>
